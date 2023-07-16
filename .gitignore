@@ -1,0 +1,14 @@
+*.o
+*.pyc
+*.class
+.env
+/node_modules
+/dist
+/build
+/.cache
+.DS_Store
+.vscode/
+.idea/
+secrets.json
+/path/to/file
+/directory/to/ignore/

@@ -1,25 +1,29 @@
 import os
 
-chat_language = os.getenv("INIT_LANGUAGE", default = "zh")
+MSG_LIST_LIMIT = int(os.getenv("MSG_LIST_LIMIT", default = 10))
 
-MSG_LIST_LIMIT = int(os.getenv("MSG_LIST_LIMIT", default = 30))
-LANGUAGE_TABLE = {
-  "zh": "嗨！",
-  "en": "Hi!"
-}
+with open('/Users/lucienlin/pyProjects/line-ai/api/memory.txt', 'r') as f:
+    memory = f.read()
 
 class Prompt:
     def __init__(self):
-        self.msg_list = []
-        self.msg_list.append(f"AI:{LANGUAGE_TABLE[chat_language]}")
+        self.message = [
+            {"role": "system", "content": memory}
+        ]
     
-    def add_msg(self, new_msg):
-        if len(self.msg_list) >= MSG_LIST_LIMIT:
+    def add_ai_msg(self, text):
+        if len(self.message) >= MSG_LIST_LIMIT:
             self.remove_msg()
-        self.msg_list.append(new_msg)
+        self.message.append({"role":"assistant", "content": text})
+
+    def add_user_msg(self, text):
+        if len(self.message) >= MSG_LIST_LIMIT:
+            self.remove_msg()
+        self.message.append({"role":"user", "content": text})
 
     def remove_msg(self):
-        self.msg_list.pop(0)
+        self.message.pop(1)
 
     def generate_prompt(self):
-        return '\n'.join(self.msg_list)
+        return self.message
+    
