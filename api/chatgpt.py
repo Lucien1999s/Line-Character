@@ -27,13 +27,3 @@ class ChatGPT:
             self.prompt.add_ai_msg(text)
         else:
             self.prompt.add_user_msg(text)
-
-
-# if __name__ == "__main__":
-#     gpt = ChatGPT()
-#     while 1:
-#         msg = input("你：")
-#         gpt.add_msg(msg, "user")
-#         reply = gpt.get_response()
-#         gpt.add_msg(reply, "ai")
-#         print(reply)
