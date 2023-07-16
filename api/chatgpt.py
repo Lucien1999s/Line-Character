@@ -2,8 +2,8 @@ from prompt import Prompt
 import os
 import openai
 
-# openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
+# openai.api_key = "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"
 
 
 class ChatGPT:
@@ -29,11 +29,11 @@ class ChatGPT:
             self.prompt.add_user_msg(text)
 
 
-if __name__ == "__main__":
-    gpt = ChatGPT()
-    while 1:
-        msg = input("你：")
-        gpt.add_msg(msg, "user")
-        reply = gpt.get_response()
-        gpt.add_msg(reply, "ai")
-        print(reply)
+# if __name__ == "__main__":
+#     gpt = ChatGPT()
+#     while 1:
+#         msg = input("你：")
+#         gpt.add_msg(msg, "user")
+#         reply = gpt.get_response()
+#         gpt.add_msg(reply, "ai")
+#         print(reply)
