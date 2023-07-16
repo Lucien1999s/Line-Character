@@ -34,5 +34,4 @@ if __name__ == "__main__":
         gpt.add_msg(msg,"user")
         reply = gpt.get_response()
         gpt.add_msg(reply,"ai")
-        #msg = gpt.prompt.generate_prompt()
         print(reply)
