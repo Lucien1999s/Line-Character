@@ -40,7 +40,7 @@ def callback():
 def moderation(text):
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer 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"
+        "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
     }
     data = {"input": text}
     response = requests.post("https://api.openai.com/v1/moderations", headers=headers, json=data)
