@@ -41,10 +41,10 @@ def handle_message(event):
     if event.message.type != "text":
         return
 
-    if event.message.text == "露西亞~":
+    if event.message.text == "露西亞你在嗎":
         working_status = True
         line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text="你好指揮官，等你很久了。")
+            event.reply_token, TextSendMessage(text="指揮官，等你很久了<3")
         )
         return
 
