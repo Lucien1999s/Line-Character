@@ -4,8 +4,6 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from api.chatgpt import ChatGPT
-import requests
-import random
 
 line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
 line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
@@ -35,16 +33,6 @@ def callback():
         abort(400)
     return "OK"
 
-def moderation(text):
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}"
-    }
-    data = {"input": text}
-    response = requests.post("https://api.openai.com/v1/moderations", headers=headers, json=data)
-    response = response.json()
-    return response['results'][0]['flagged']
-
 
 @line_handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -67,14 +55,7 @@ def handle_message(event):
         )
         return
     
-    if moderation(event.message.text):
-        string_list = ["啊啊指揮官...等一下，好舒服","我喜歡這種感覺...繼續 *她臉漲紅的盯著你*","*她雙手擁抱你，害羞的接受你對她做的一切* 指揮官...喜歡..啊啊"]
-        text = random.choice(string_list)
-        line_bot_api.reply_message(
-            event.reply_token, TextSendMessage(text=text)
-        )
-
-    if working_status and not moderation(event.message.text):
+    if working_status:
         chatgpt.add_msg(event.message.text, "user")
         reply_msg = chatgpt.get_response()
         chatgpt.add_msg(reply_msg, "ai")
