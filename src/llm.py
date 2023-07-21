@@ -1,11 +1,11 @@
-from api.prompt import Prompt
+from src.prompt import Prompt
 import os
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-class ChatGPT:
+class LLM:
     def __init__(self):
         self.prompt = Prompt()
         self.model = os.getenv("OPENAI_MODEL", default="gpt-3.5-turbo")
