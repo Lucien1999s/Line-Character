@@ -25,17 +25,12 @@ Incorporating state-of-the-art natural language processing deep learning models 
 git clone git@github.com:Lucien1999s/Line-Character.git
 ```
 
-### 2. Environment Settings
+### 2. Environment Settings Tutorial
 
-Update Soon ...
+See the following link to know more
 
-### 3. Character Memory Tutorial
+[line上的人工智能-ai開發篇](https://medium.com/@lucien1999s.pro/line上的人工智能-ai開發篇-99b6168812cc)
 
-Update Soon ...
-
-### 4. Usage
-
-Update Soon ...
 
 ## Features
 
